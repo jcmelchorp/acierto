@@ -6,12 +6,12 @@ export class LoginWithGoogle {
 
 export class LoginWithGoogleSuccess {
   static readonly type = '[Auth google] Login Success';
-  constructor(public payload: { user: User }) { }
+  constructor(public payload: { user: User }) {}
 }
 
 export class LoginWithGoogleFailure {
   static readonly type = '[Auth google] Login Failure';
-  constructor(public payload: any) { }
+  constructor(public payload: any) {}
 }
 
 export class LoginRedirect {

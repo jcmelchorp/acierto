@@ -6,9 +6,8 @@ import {
   LoginWithGoogle,
   LoginWithGoogleFailure,
   LoginWithGoogleSuccess,
-} from './../actions/auth.actions';
+} from './../actions/auth.action';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 export interface LoginPageStateModel {
   error: string | null;
@@ -24,20 +23,20 @@ export interface LoginPageStateModel {
 })
 @Injectable()
 export class LoginPageState {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   @Selector()
-  static getError(state: LoginPageStateModel): string {
+  static getError(state: LoginPageStateModel) {
     return state.error;
   }
 
   @Selector()
-  static getPending(state: LoginPageStateModel): boolean {
+  static getPending(state: LoginPageStateModel) {
     return state.pending;
   }
 
   @Action(LoginWithGoogle)
-  loginWithGoogle({ dispatch, patchState }: StateContext<LoginPageStateModel>): Promise<Observable<void> | Observable<unknown>> {
+  loginWithGoogle({ dispatch, patchState }: StateContext<LoginPageStateModel>) {
     patchState({
       error: null,
       pending: true,
@@ -51,16 +50,23 @@ export class LoginPageState {
   }
 
   @Action(LoginWithGoogleSuccess)
-  loginWithGoogleSuccess({ dispatch, patchState, }: StateContext<LoginPageStateModel>): void {
+  loginWithGoogleSuccess({
+    dispatch,
+    patchState,
+  }: StateContext<LoginPageStateModel>) {
     patchState({
       error: null,
       pending: false,
     });
+
     dispatch(new Navigate(['/']));
   }
 
   @Action(LoginWithGoogleFailure)
-  loginWithGoogleFailure({ patchState }: StateContext<LoginPageStateModel>, action: LoginWithGoogleFailure): void {
+  loginWithGoogleFailure(
+    { patchState }: StateContext<LoginPageStateModel>,
+    action: LoginWithGoogleFailure
+  ) {
     patchState({
       error: action.payload,
       pending: false,

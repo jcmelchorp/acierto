@@ -3,7 +3,11 @@ import { Navigate } from '@ngxs/router-plugin';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
-import { LoginRedirect, LoginWithGoogleSuccess, Logout } from '../actions/auth.actions';
+import {
+  LoginRedirect,
+  LoginWithGoogleSuccess,
+  Logout,
+} from '../actions/auth.action';
 
 export interface AuthStatusStateModel {
   loggedIn: boolean;
@@ -21,21 +25,23 @@ const authStatusStateDefauts: AuthStatusStateModel = {
 })
 @Injectable()
 export class AuthStatusState {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   @Selector()
-  static getLoggedIn(state: AuthStatusStateModel): boolean {
+  static getLoggedIn(state: AuthStatusStateModel) {
     return state.loggedIn;
   }
 
   @Selector()
-  static getUser(state: AuthStatusStateModel): User {
+  static getUser(state: AuthStatusStateModel) {
     return state.user;
   }
 
   @Action(LoginWithGoogleSuccess)
   loginSuccess(
-    { patchState }: StateContext<AuthStatusStateModel>, action: LoginWithGoogleSuccess): void {
+    { patchState }: StateContext<AuthStatusStateModel>,
+    action: LoginWithGoogleSuccess
+  ) {
     patchState({
       loggedIn: true,
       user: action.payload.user,

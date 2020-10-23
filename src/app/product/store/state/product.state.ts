@@ -39,11 +39,11 @@ export const productsStateDefaults: ProductsStateModel = {
   providedIn: 'root',
 })
 export class ProductsState {
-  constructor(private service: ProductService) {}
+  constructor(private service: ProductService) { }
 
   @Selector()
   static getProducts(state: ProductsStateModel) {
-    return state.entities['products'];
+    return state.entities.products;
   }
 
   @Selector()

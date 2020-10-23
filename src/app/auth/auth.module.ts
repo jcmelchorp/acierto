@@ -3,13 +3,15 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../material';
 import { AuthRoutingModule } from './auth-routing.module';
-import { EmailLoginComponent } from './components/email-login/email-login.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
+import { EmailLoginComponent } from './containers/email-login.component';
+import { LoginPageComponent } from './containers/login-page.component';
 import { AuthService } from './services/auth.service';
 import { AuthStates } from './store';
+
 export const COMPONENTS = [LoginPageComponent, EmailLoginComponent];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,10 +21,10 @@ export const COMPONENTS = [LoginPageComponent, EmailLoginComponent];
     NgxsModule.forFeature(AuthStates),
   ],
   declarations: COMPONENTS,
-  exports: COMPONENTS
+  exports: COMPONENTS,
 })
 export class AuthModule {
-  static forRoot(): ModuleWithProviders<any> {
+  static forRoot(): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
       providers: [AuthService, AngularFireAuthGuard],

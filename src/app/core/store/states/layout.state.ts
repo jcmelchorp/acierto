@@ -15,19 +15,19 @@ export interface LayoutStateModel {
 @Injectable()
 export class LayoutState {
   @Selector()
-  static getShowSidenav(state: LayoutStateModel): boolean {
+  static getShowSidenav(state: LayoutStateModel) {
     return state.showSidenav;
   }
 
   @Action(OpenSidenav)
-  openSidenav({ patchState }: StateContext<LayoutStateModel>): void {
+  openSidenav({ patchState }: StateContext<LayoutStateModel>) {
     patchState({
       showSidenav: true,
     });
   }
 
   @Action(CloseSidenav)
-  closeSidenav({ patchState }: StateContext<LayoutStateModel>): void {
+  closeSidenav({ patchState }: StateContext<LayoutStateModel>) {
     patchState({
       showSidenav: false,
     });

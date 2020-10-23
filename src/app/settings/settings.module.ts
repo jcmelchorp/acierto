@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '../material/material.module';
-import { SettingsComponent } from './containers/settings/settings.component';
+import { MaterialModule } from '../material';
+import { SettingsComponent } from './containers/settings.component';
 import { SettingsRoutingModule } from './settings-routing.module';
 
 export const COMPONENTS = [SettingsComponent];
@@ -10,4 +10,4 @@ export const COMPONENTS = [SettingsComponent];
   declarations: COMPONENTS,
   imports: [CommonModule, SettingsRoutingModule, MaterialModule],
 })
-export class SettingsModule { }
+export class SettingsModule {}

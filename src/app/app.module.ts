@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { environment } from './../environments/environment';
-import { CoreModule } from './core/core.module';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { environment } from 'src/environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { AppStates } from './core/store';
 import { AppComponent } from './core/containers/app/app.component';
+import { CoreModule } from './core/core.module';
+import { AppStates } from './core/store';
 
 @NgModule({
   imports: [
@@ -21,18 +21,23 @@ import { AppComponent } from './core/containers/app/app.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    NgxsModule.forRoot(AppStates, { developmentMode: !environment.production }),
-    NgxsReduxDevtoolsPluginModule.forRoot({ name: 'Aciertos DevTools', }),
-    NgxsLoggerPluginModule.forRoot({ disabled: environment.production, }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    NgxsModule.forRoot(AppStates, {
+      developmentMode: !environment.production,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      name: 'Ngxs e-commerce DevTools',
+    }),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production,
+    }),
     NgxsRouterPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({
       key: ['auth.status'],
     }),
     CoreModule.forRoot(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
-

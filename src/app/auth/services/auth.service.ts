@@ -20,13 +20,13 @@ export class AuthService {
     this.user$ = this.getAuthState();
   }
 
-  async googleSignin(): Promise<User> {
+  async googleSignin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
     return this.updateUserData(credential.user);
   }
 
-  async signOut(): Promise<void> {
+  async signOut() {
     await this.afAuth.signOut();
   }
 
@@ -47,7 +47,7 @@ export class AuthService {
     return data;
   }
 
-  private getAuthState(): Observable<any> {
+  private getAuthState() {
     return this.afAuth.authState.pipe(
       switchMap((user: User) => {
         if (user) {

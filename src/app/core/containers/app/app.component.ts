@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { User } from 'src/app/auth/models/user.model';
 import { Logout } from '../../../auth/store';
-import { NavItem, USER_NAV } from '../../models/nav-items';
+import { NavItem, USER_NAV } from '../../nav-items';
 import { CloseSidenav, LayoutState, OpenSidenav } from '../../store';
 
 @Component({
@@ -37,20 +37,20 @@ export class AppComponent implements OnInit {
       );
   }
 
-  closeSidenav(): void {
+  closeSidenav() {
     this.store.dispatch(new CloseSidenav());
   }
 
-  openSidenav(): void {
+  openSidenav() {
     this.store.dispatch(new OpenSidenav());
   }
 
-  logout(): void {
+  logout() {
     this.closeSidenav();
     this.store.dispatch(new Logout());
   }
 
-  settings(): void {
+  settings() {
     this.store.dispatch(new Navigate(['/settings']));
   }
 }
