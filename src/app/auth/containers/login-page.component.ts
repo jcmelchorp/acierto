@@ -9,12 +9,12 @@ import { LoginPageState } from './../store/states/login-page.state';
 @Component({
   selector: 'app-login-page',
   template: `
-    <div *ngIf="!(user$ | async)">
+    <div *ngIf="(user$ | async)=== undefined||null||false">
       <h1>Login</h1>
       <button
         mat-raised-button
         (click)="onLoginWithGoogle()"
-        *ngIf="!(pending$ | async); else spinner"
+        *ngIf="(pending$ | async)=== undefined||null||false; else spinner"
       >
         <img src="/assets/google-logo.svg" /> Login with Google
       </button>
@@ -53,7 +53,7 @@ export class LoginPageComponent {
   @Select(AuthStatusState.getLoggedIn) IsLoggedIn$: Observable<boolean>;
   @Select(AuthStatusState.getUser) user$: Observable<User>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) { }
 
   onLoginWithGoogle() {
     this.store.dispatch(new LoginWithGoogle());

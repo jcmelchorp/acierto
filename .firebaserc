@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "escuela-enlinea": {
+      "hosting": {
+        "acierto": [
+          "escuela-enlinea"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "escuela-enlinea"
+  }
+}
