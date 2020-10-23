@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyDQ8Wt2raNCeKM6FaWGLPsr7FFiRYW0m8k',
+    authDomain: 'escuela-enlinea.firebaseapp.com',
+    databaseURL: 'https://escuela-enlinea.firebaseio.com',
+    projectId: 'escuela-enlinea',
+    storageBucket: 'escuela-enlinea.appspot.com',
+    messagingSenderId: '73768123354',
+    appId: '1:73768123354:web:6d2312f4040ab32270dee3',
+    measurementId: 'G-QZD0D1WBBG'
+  },
 };
 
 /*

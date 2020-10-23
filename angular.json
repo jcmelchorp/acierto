@@ -17,6 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "firebase/app",
+              "@firebase/auth",
+              "@angular/fire/firestore"
+            ],
             "outputPath": "dist/acierto",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -121,8 +126,18 @@
               "devServerTarget": "acierto:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "acierto"
+    }
+  },
+  "defaultProject": "acierto",
+  "cli": {
+    "analytics": "274059fc-e9cf-43e3-9fa1-aecd1cad8525",
+    "defaultCollection": "@angular/schematics",
+    "packageManager": "yarn"
+  }
 }
